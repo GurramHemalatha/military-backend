@@ -1,0 +1,39 @@
+package com.kristallball.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/dashboard")
+@CrossOrigin(origins = "http://localhost:5173")
+public class DashboardController {
+
+    @GetMapping("/metrics")
+    public ResponseEntity<Map<String, Object>> getMetrics(@RequestParam(required = false) String baseId) {
+        Map<String, Object> metrics = new HashMap<>();
+        
+        // These can be replaced with JPQL SUM queries from your repositories
+        int openingBalance = 1200;
+        int purchases = 300;
+        int transfersIn = 150;
+        int transfersOut = 80;
+        int netMovement = purchases + transfersIn - transfersOut; // 370
+        int assigned = 250;
+        int expended = 120;
+        int closingBalance = openingBalance + netMovement - assigned - expended;
+
+        metrics.put("openingBalance", openingBalance);
+        metrics.put("purchases", purchases);
+        metrics.put("transfersIn", transfersIn);
+        metrics.put("transfersOut", transfersOut);
+        metrics.put("netMovement", netMovement);
+        metrics.put("assigned", assigned);
+        metrics.put("expended", expended);
+        metrics.put("closingBalance", closingBalance);
+
+        return ResponseEntity.ok(metrics);
+    }
+}
