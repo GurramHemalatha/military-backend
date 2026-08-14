@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/equipment")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "https://military-frontend-six.vercel.app"})
 public class EquipmentController {
 
     private final EquipmentRepository equipmentRepository;
