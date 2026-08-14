@@ -26,11 +26,11 @@ public class SecurityConfig {
         return http.build();
     }
    
-    @Bean
+@Bean
 public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
     
-    // Allow both local frontend and live Vercel frontend
+    // Allow local development and live Vercel domain
     configuration.setAllowedOrigins(List.of(
         "http://localhost:5173",
         "https://military-frontend-six.vercel.app"
